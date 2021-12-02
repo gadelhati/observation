@@ -5,13 +5,10 @@ import store from "./store";
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import { AuthItem } from './components/auth/auth.item'
-import TokenService from './services/service.token'
 
 ReactDOM.render(
     <Provider store={store}>
-        {TokenService.getUser() ? <App /> : <App  />}
-        {/* <App /> */}
+        <App />
     </Provider>
     , document.getElementById('root'));
 
