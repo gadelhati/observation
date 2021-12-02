@@ -8,9 +8,6 @@ import { ShipSynopUpload } from './components/shipsynop/shipsynop.upload'
 
 import { AuthItem } from "./components/auth/auth.item";
 import { Profile } from "./components/auth/profile.item";
-import BoardUser from "./components/auth/board-user.component";
-import BoardModerator from "./components/auth/board-moderator.component";
-import BoardAdmin from "./components/auth/board-admin.component";
 import { TokenRoutes } from './routes.token'
 
 const Routes = () => (
@@ -24,10 +21,6 @@ const Routes = () => (
            <TokenRoutes exact path="/profile" component={Profile} />
            <TokenRoutes exact path={"/signup"} component={AuthItem} />
            <TokenRoutes exact path={["/item", "/item/:id"]} component={ShipSynopItem} />
-
-           <Route path="/user" component={BoardUser} />
-           <Route path="/mod" component={BoardModerator} />
-           <Route path="/admin" component={BoardAdmin} />
         </Switch>
     </BrowserRouter>
 )
