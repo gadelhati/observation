@@ -1,17 +1,17 @@
 import React, { useState/*, useEffect*/ } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router'
+import { useHistory } from 'react-router'
 import { signupActions, signinActions } from '../../actions/action.auth'
 import { Card, Spinner, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap";
-// import serviceToken from '../../services/service.token';
-// import { Redirect } from 'react-router-dom';
 // import Expirated from '../../helpers/expiretad';
+import Alert from '../../helpers/alert'
 import ErrorBoundary from '../../helpers/error.boudary'
 
 export const AuthItem = (props) => {
 
     const [state, setState] = useState(props);
-    // const history = useHistory()
+    const [alert, setAlert] = useState({ expose: false, heading: "", body: "" });
+    const history = useHistory()
     const dispatch = useDispatch();
 
     const loading = useSelector((state => state.itens.loading));
@@ -35,12 +35,24 @@ export const AuthItem = (props) => {
     const signupItem = () => {
         submitItem(state)
         dispatch(signupActions(state.username, state.email, state.password))
+            .then(response => {
+                setAlert({ expose: true, heading: "Signuped", body: JSON.stringify(response) });
+            })
+            .catch(error => {
+                setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+            })
         // history.push('/')
     };
     const signinItem = () => {
         submitItem(state)
         dispatch(signinActions(state.username, state.password))
-        // history.push('/profile')
+            .then(response => {
+                setAlert({ expose: true, heading: "Signined", body: JSON.stringify(response) });
+            })
+            .catch(error => {
+                // setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+            })
+        history.push('/')
     }
     // const logOutItem = () => {
     //     dispatch(logOut())
@@ -69,6 +81,7 @@ export const AuthItem = (props) => {
 
     return (
         <>
+        <Alert expose={alert.expose} heading={alert.heading} body={alert.body} />
         <Card style={{ width: '28rem' }}>
             <Card.Img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile-img" className="profile-img-card"/>
              <Card.Body>
