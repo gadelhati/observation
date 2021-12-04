@@ -1,22 +1,22 @@
-import React, { useState/*, useEffect*/ } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router'
-import { signupActions, signinActions } from '../../actions/action.auth'
-import { Card, Spinner, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap";
-// import Expirated from '../../helpers/expiretad';
-import Alert from '../../helpers/alert'
-import ErrorBoundary from '../../helpers/error.boudary'
+import React, { useState/*, useEffect*/ } from "react"
+import { useDispatch, useSelector } from "react-redux"
+// import { useHistory } from "react-router"
+
+import { signupActions, signinActions } from "../../actions/action.auth"
+import { Card, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
+import { Message } from "../../helpers/message.alert"
+import ErrorBoundary from "../../helpers/error.boudary"
 
 export const AuthItem = (props) => {
 
-    const [state, setState] = useState(props);
-    const [alert, setAlert] = useState({ expose: false, heading: "", body: "" });
-    const history = useHistory()
-    const dispatch = useDispatch();
+    const [state, setState] = useState(props)
+    const [message, setMessage] = useState({ expose: false, heading: "", body: "" })
+    // const history = useHistory()
+    const dispatch = useDispatch()
 
-    const loading = useSelector((state => state.itens.loading));
-    // const error = useSelector((state => state.itens.error));
-    // const itens = useSelector((state => state.itens.itens));
+    const loading = useSelector((state => state.itens.loading))
+    // const error = useSelector((state => state.itens.error))
+    // const itens = useSelector((state => state.itens.itens))
 
     // useEffect(() => {
     //     dispatch(retrieveActions(props.match.params.id))
@@ -25,10 +25,10 @@ export const AuthItem = (props) => {
     //     })
     //     .catch(error => {
     //     })
-    // }, [dispatch, props.match.params.id]);
+    // }, [dispatch, props.match.params.id])
     // useEffect(() => {
     //     if(serviceToken.getUser("user")){
-    //         return <Redirect to="/profile" />;
+    //         return <Redirect to="/profile" />
     //     }
     // });
 
@@ -36,10 +36,10 @@ export const AuthItem = (props) => {
         submitItem(state)
         dispatch(signupActions(state.username, state.email, state.password))
             .then(response => {
-                setAlert({ expose: true, heading: "Signuped", body: JSON.stringify(response) });
+                setMessage({ expose: true, heading: "Signuped", body: JSON.stringify(response) })
             })
             .catch(error => {
-                setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+                setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
         // history.push('/')
     };
@@ -47,12 +47,12 @@ export const AuthItem = (props) => {
         submitItem(state)
         dispatch(signinActions(state.username, state.password))
             .then(response => {
-                setAlert({ expose: true, heading: "Signined", body: JSON.stringify(response) });
+                setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response) })
             })
             .catch(error => {
-                // setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+                // setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
-        history.push('/')
+        // history.push('/')
     }
     // const logOutItem = () => {
     //     dispatch(logOut())
@@ -64,8 +64,8 @@ export const AuthItem = (props) => {
     //     history.push("/")
     // }
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setState({ ...state, [name]: value });
+        const { name, value } = event.target
+        setState({ ...state, [name]: value })
     };
     const submitItem = () => {
         return {
@@ -81,7 +81,11 @@ export const AuthItem = (props) => {
 
     return (
         <>
-        <Alert expose={alert.expose} heading={alert.heading} body={alert.body} />
+        {   loading ?
+			<Message expose={message.expose} heading="Loading" body="loading..." />
+			:
+			<Message expose={message.expose} heading={message.heading} body={message.body} />
+		}
         <Card style={{ width: '28rem' }}>
             <Card.Img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile-img" className="profile-img-card"/>
              <Card.Body>
@@ -155,13 +159,7 @@ export const AuthItem = (props) => {
                 }
                 {state.error ? <div className="font-weight-bold alert alert-danger text-center mt-4">Some data are //required {state.error}</div> : null}
             </Card.Body>
-         </Card>
-        {loading ?
-                <Button variant="secondary" disabled>
-                    <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" />
-                    Loading...
-                </Button>
-                : null}
+        </Card>
         </>
-    );
+    )
 }

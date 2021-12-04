@@ -1,15 +1,15 @@
-import { constants } from '../types/constants.auth'
-import { signin, signup, logout } from '../services/service.auth';
+import { constants } from "../types/constants.auth"
+import { signin, signup, logout } from "../services/service.auth"
 
 export const signupActions = (username, email, password) => async (dispatch) => {
-    dispatch(signupStart());
+    dispatch(signupStart())
     try {
-        const response = await signup(username, email, password);
-        dispatch(signupSuccess(response.data));
-        return Promise.resolve(response.data);
+        const response = await signup(username, email, password)
+        dispatch(signupSuccess(response.data))
+        return Promise.resolve(response.data)
     } catch (error) {
-        dispatch(signupError(error));
-        return Promise.reject(error);
+        dispatch(signupError(error))
+        return Promise.reject(error)
     }
 }
 export const signupStart = () => ({
@@ -25,14 +25,14 @@ export const signupError = error => ({
 })
 
 export const signinActions = (username, password) => async (dispatch) => {
-    dispatch(signinStart());
+    dispatch(signinStart())
     try {
-        const response = await signin(username, password);
+        const response = await signin(username, password)
         dispatch(signinSuccess(response.data))
-        return Promise.resolve(response.data);
+        return Promise.resolve(response.data)
     } catch (error) {
-        dispatch(signinError(error));
-        return Promise.reject(error);
+        dispatch(signinError(error))
+        return Promise.reject(error)
     }
 }
 export const signinStart = () => ({
@@ -48,11 +48,11 @@ export const signinError = error => ({
 })
 
 export const logoutActions = () => (dispatch) => {
-  logout();
+  logout()
   dispatch({
     type: constants.LOGOUT,
-  });
-};
+  })
+}
 
 export const refreshTokenActions = (accessToken) => (dispatch) => {
   dispatch({

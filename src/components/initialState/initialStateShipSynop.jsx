@@ -87,4 +87,4 @@ export const initialStateShipSynop = {
     dataObservacao: "", 
     estacao: "", 
     // file: "",     
-};
+}

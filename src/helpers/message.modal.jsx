@@ -5,7 +5,7 @@ import { Modal, Container, Row, Col, OverlayTrigger, Tooltip, InputGroup, FormCo
 import { createActions, deleteAction, updateAction } from '../../actions/action.shipsynop'
 // import ModalResponse from './shipsynop.modal.response'
 
-const ShipSynopModal = (props) => {
+const MessageModal = (props) => {
 
     const [state, setState] = useState(props);
     const [show, setShow] = useState(false);
@@ -1519,4 +1519,4 @@ const ShipSynopModal = (props) => {
     );
 }
 
-export default ShipSynopModal;
+export default MessageModal;

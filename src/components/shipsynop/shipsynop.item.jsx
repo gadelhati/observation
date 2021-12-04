@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { createActions, retrieveActions, updateAction, deleteAction } from '../../actions/action.shipsynop'
-import { Container, Row, Col, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap";
-import Alert from '../../helpers/alert'
-import { initialStateShipSynop } from '../initialState/initialStateShipSynop'
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { createActions, retrieveActions, updateAction, deleteAction } from "../../actions/action.shipsynop"
+import { Container, Row, Col, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
+import { Message } from "../../helpers/message.alert"
+import { initialStateShipSynop } from "../initialState/initialStateShipSynop"
 
 export const ShipSynopItem = (props) => {
 
     const [state, setState] = useState(initialStateShipSynop);
-    const [alert, setAlert] = useState({ expose: false, heading: "", body: "" });
-    const dispatch = useDispatch();
+    const [message, setMessage] = useState({ expose: false, heading: "", body: "" })
+    const dispatch = useDispatch()
+
+    const loading = useSelector((state => state.itens.loading))
 
     useEffect(() => {
         dispatch(retrieveActions(props.match.params.id))
@@ -19,42 +21,42 @@ export const ShipSynopItem = (props) => {
             .catch(() => {
                 setState(initialStateShipSynop)
             })
-    }, [dispatch, props.match.params.id]);
+    }, [dispatch, props.match.params.id])
 
     const createItem = () => {
         submitItem(state)
         dispatch(createActions(state))
             .then(response => {
-                setAlert({ expose: true, heading: "Created item", body: JSON.stringify(response.data.id) });
+                setMessage({ expose: true, heading: "Created item", body: JSON.stringify(response.data.id) })
             })
             .catch(error => {
-                setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+                setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
     }
     const updateItem = () => {
         submitItem(state)
         dispatch(updateAction(state.id, state))
             .then(response => {
-                setAlert({ expose: true, heading: "Updated item", body: JSON.stringify(response.data.id) });
+                setMessage({ expose: true, heading: "Updated item", body: JSON.stringify(response.data.id) })
             })
             .catch(error => {
-                setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") });
+                setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
     }
     const deleteItem = () => {
         dispatch(deleteAction(state.id))
             .then(response => {
-                setAlert({ expose: true, heading: "Deleted item", body: JSON.stringify(response.data.id) });
+                setMessage({ expose: true, heading: "Deleted item", body: JSON.stringify(response.data.id) })
                 setState(initialStateShipSynop)
             })
             .catch(error => {
-                setAlert({ expose: true, heading: "Error", body: JSON.stringify(error) });
+                setMessage({ expose: true, heading: "Error", body: JSON.stringify(error) })
             })
     }
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setState({ ...state, [name]: value });
-    };
+        const { name, value } = event.target
+        setState({ ...state, [name]: value })
+    }
     const submitItem = () => {
         return {
             _89: state._89,
@@ -150,7 +152,11 @@ export const ShipSynopItem = (props) => {
 
     return (
         <>
-            <Alert expose={alert.expose} heading={alert.heading} body={alert.body} />
+        {   loading ?
+			<Message expose={message.expose} heading="Loading" body="loading..." />
+			:
+			<Message expose={message.expose} heading={message.heading} body={message.body} />
+		}
             <Container>
                 <Row>
                     <Col lg={true} >
@@ -1512,5 +1518,5 @@ export const ShipSynopItem = (props) => {
                 {state.error ? <div className="font-weight-bold alert alert-danger text-center mt-4">Some data are //required {state.error}</div> : null}
             </Container>
         </>
-    );
+    )
 }

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { Modal, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react"
+import { Modal, Button } from "react-bootstrap"
 
-const ShipSynopModalResponse = (props) => {
+const MessageModalResponse = (props) => {
 
-    const [state, setState] = useState(props);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [state, setState] = useState(props)
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     useEffect(() => {
-        setState(props);
-    }, [props]);
+        setState(props)
+    }, [props])
 
     return (
         <>
@@ -31,4 +31,4 @@ const ShipSynopModalResponse = (props) => {
     );
 }
 
-export default ShipSynopModalResponse;
+export default MessageModalResponse

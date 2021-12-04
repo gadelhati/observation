@@ -1,4 +1,4 @@
-import { constants } from '../types/constants'
+import { constants } from "../types/constants"
 
 const iniatialState = {
     itens: [],
@@ -62,6 +62,6 @@ export const ShipSynopReducer = (state = iniatialState, action) => {
         // case constants.UPDATED_ERROR:
         //     return { ...state, error: true }
         default:
-            return state;
+            return state
     }
 }

@@ -1,15 +1,15 @@
-import { constants } from '../types/constants'
-import service from '../services/service.shipsynop';
+import { constants } from "../types/constants"
+import { create, retrieve, getRetrieve, update, remove, removeAll } from "../services/service.shipsynop"
 
 export const createActions = (item) => async (dispatch) => {
-    dispatch(createStart());
+    dispatch(createStart())
     try {
-        const response = await service.create(item);
-        dispatch(createSuccess(response));
-        return Promise.resolve(response);
+        const response = await create(item)
+        dispatch(createSuccess(response))
+        return Promise.resolve(response)
     } catch (error) {
-        dispatch(createError(error));
-        return Promise.reject(error);
+        dispatch(createError(error))
+        return Promise.reject(error)
     }
 }
 export const createStart = () => ({
@@ -25,14 +25,14 @@ export const createError = error => ({
 })
 
 export const retrieveAllActions = () => async (dispatch) => {
-    dispatch(retrieveStart());
+    dispatch(retrieveStart())
     try {
-        const response = await service.getRetrieve();
-        dispatch(retrieveAllSuccess(response.data));
-        return Promise.resolve(response.data);
+        const response = await getRetrieve()
+        dispatch(retrieveAllSuccess(response.data))
+        return Promise.resolve(response.data)
     } catch (error) {
-        dispatch(retrieveAllError(error));
-        return Promise.reject(error);
+        dispatch(retrieveAllError(error))
+        return Promise.reject(error)
     }
 }
 export const retrieveAllStart = () => ({
@@ -48,14 +48,14 @@ export const retrieveAllError = error => ({
 })
 
 export const retrieveActions = (id) => async (dispatch) => {
-    dispatch(retrieveStart());
+    dispatch(retrieveStart())
     try {
-        const response = await service.retrieve(id);
-        dispatch(retrieveSuccess(response.data));
-        return Promise.resolve(response.data);
+        const response = await retrieve(id)
+        dispatch(retrieveSuccess(response.data))
+        return Promise.resolve(response.data)
     } catch (error) {
-        dispatch(retrieveError(error));
-        return Promise.reject(error);
+        dispatch(retrieveError(error))
+        return Promise.reject(error)
     }
 }
 export const retrieveStart = () => ({
@@ -71,14 +71,14 @@ export const retrieveError = error => ({
 })
 
 export const updateAction = (id, data) => async (dispatch) => {
-    dispatch(updateStart());
+    dispatch(updateStart())
     try {
-        const response = await service.update(id, data);
-        dispatch(updateSuccess(response));
-        return Promise.resolve(response);
+        const response = await update(id, data)
+        dispatch(updateSuccess(response))
+        return Promise.resolve(response)
     } catch (error) {
-        dispatch(updateError(error));
-        return Promise.reject(error);
+        dispatch(updateError(error))
+        return Promise.reject(error)
     }
 }
 export const updateStart = () => ({
@@ -93,14 +93,14 @@ export const updateError = () => ({
 })
 
 export const deleteAction = (id) => async (dispatch) => {
-    dispatch(deleteStart());
+    dispatch(deleteStart())
     try {
-        const response = await service.remove(id);
-        // dispatch(deleteSuccess(response));
-        return Promise.resolve(response);
+        const response = await remove(id)
+        // dispatch(deleteSuccess(response))
+        return Promise.resolve(response)
     } catch (error) {
-        dispatch(deleteError(error));
-        return Promise.reject(error);
+        dispatch(deleteError(error))
+        return Promise.reject(error)
     }
 }
 export const deleteStart = () => ({
@@ -116,14 +116,14 @@ export const deleteError = error => ({
 })
 
 export const deleteAllAction = () => async (dispatch) => {
-    dispatch(deleteAllStart());
+    dispatch(deleteAllStart())
     try {
-        const response = await service.removeAll();
-        dispatch(deleteAllSuccess(response.data));
-        return Promise.resolve(response);
+        const response = await removeAll()
+        dispatch(deleteAllSuccess(response.data))
+        return Promise.resolve(response)
     } catch (error) {
-        dispatch(deleteError(error));
-        return Promise.reject(error);
+        dispatch(deleteError(error))
+        return Promise.reject(error)
     }
 }
 export const deleteAllStart = () => ({
@@ -167,13 +167,12 @@ export const deleteAllError = error => ({
 
 // export const findTutorialsByTitle = (title) => async (dispatch) => {
 //     try {
-//       const res = await TutorialDataService.findByTitle(title);
-  
+//       const res = await TutorialDataService.findByTitle(title)
 //       dispatch({
 //         type: RETRIEVE_TUTORIALS,
 //         payload: res.data,
 //       });
 //     } catch (err) {
-//       console.log(err);
+//       console.log(err)
 //     }
-//   };
+//   }

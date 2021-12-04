@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Button } from "react-bootstrap";
-// import {Link} from 'react-router-dom'
+import React, { useState } from "react"
+import { Button } from "react-bootstrap"
+// import {Link} from "react-router-dom"
 
-const ShipSynop = ( props ) => {
+export const ShipSynop = ( props ) => {
 
-    const [state] = useState(props);
+    const [state] = useState(props)
 
     return (
         <tr>
@@ -35,7 +35,5 @@ const ShipSynop = ( props ) => {
                 {/* <Link to={`/update/${state.item.id}`} className="btn btn-primary mr-2">Update</Link> */}
             </td>
         </tr>
-    );
+    )
 }
-
-export default ShipSynop;

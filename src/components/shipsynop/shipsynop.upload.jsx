@@ -1,50 +1,50 @@
 import React, { useState, useEffect } from "react"
-import Dropzone from "react-dropzone";
-import { Card } from "react-bootstrap";
+import Dropzone from "react-dropzone"
+import { Card } from "react-bootstrap"
 
-import { /*getFiles,*/ uploadFile } from "../../services/service.upload-files";
-    
+import { /*getFiles,*/ uploadFile } from "../../services/service.upload-files"
+
 export const ShipSynopUpload = () => {
-    const [selectedFiles, setSelectedFiles] = useState(undefined);
-    const [currentFile, setCurrentFile] = useState(undefined);
-    const [progress, setProgress] = useState(0);
-    const [message, setMessage] = useState("");
+    const [selectedFiles, setSelectedFiles] = useState(undefined)
+    const [currentFile, setCurrentFile] = useState(undefined)
+    const [progress, setProgress] = useState(0)
+    const [message, setMessage] = useState("")
     const [fileInfos, setFileInfos] = useState([]);
 
     useEffect(() => {
         // getFiles().then((response) => {
-        //     setFileInfos(response.data);
+        //     setFileInfos(response.data)
         // });
     }, []);
 
     const upload = () => {
-        let currentFile = selectedFiles[0];
+        let currentFile = selectedFiles[0]
 
-        setProgress(0);
-        setCurrentFile(currentFile);
+        setProgress(0)
+        setCurrentFile(currentFile)
 
         uploadFile(currentFile, (event) => {
-            setProgress(Math.round((100 * event.loaded) / event.total));
+            setProgress(Math.round((100 * event.loaded) / event.total))
         })
             .then((response) => {
-                setMessage(response.data.message);
-                // return getFiles();
+                setMessage(response.data.message)
+                // return getFiles()
             })
             .then((files) => {
-                setFileInfos(files.data);
+                setFileInfos(files.data)
             })
             .catch(() => {
-                setProgress(0);
-                setMessage("Could not upload the file!");
-                setCurrentFile(undefined);
+                setProgress(0)
+                setMessage("Could not upload the file!")
+                setCurrentFile(undefined)
             });
 
-        setSelectedFiles(undefined);
+        setSelectedFiles(undefined)
     };
 
     const onDrop = (files) => {
         if (files.length > 0) {
-            setSelectedFiles(files);
+            setSelectedFiles(files)
         }
     };
 
@@ -116,5 +116,5 @@ export const ShipSynopUpload = () => {
                 </div>
             )}
         </Card>
-    );
-};
+    )
+}

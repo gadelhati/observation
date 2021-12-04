@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import store from './store'
-import Header from './containers/header';
+import { Header } from './containers/header';
 import Routes from "./routes"
 
 class App extends Component {

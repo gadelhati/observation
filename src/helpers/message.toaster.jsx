@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Toast, ToastContainer } from "react-bootstrap";
-// import { shipSynopDeleteAction } from '../../actions/action.shipsynop'
+import React, { useState } from "react"
+import { Toast, ToastContainer } from "react-bootstrap"
+// import { shipSynopDeleteAction } from "../../actions/action.shipsynop"
 
 const Toaster = ({expose, body}) => {
 
-    // const { expose, body } = toasted;
-    const [show, setShow] = useState(expose);
-    const toggleShow = () => setShow(!show);
+    // const { expose, body } = toasted
+    const [show, setShow] = useState(expose)
+    const toggleShow = () => setShow(!show)
 
     return (
         <ToastContainer className="p-3" position={'top-center'}>
@@ -24,7 +24,7 @@ const Toaster = ({expose, body}) => {
                 </Toast.Body>
             </Toast>
         </ToastContainer>
-    );
+    )
 }
 
-export default Toaster;
+export default Toaster

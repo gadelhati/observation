@@ -1,26 +1,26 @@
-import React from 'react'
-import { Card } from "react-bootstrap";
+import React from "react"
+import { Card } from "react-bootstrap"
 
-import Expirated from '../../helpers/expiretad';
-import TokenService from "../../services/service.token"
+import { Message } from "../../helpers/message.alert"
+import { getUserName, getLocalAccessToken, getId, getEmail, getUser } from "../../services/service.token"
 
 export const Profile = (props) => {
 
     return (
         <Card>
             <Card.Body>
-                {TokenService.getUser("user") ?
+                {getUser("user") ?
                     <div className="container">
-                        <p><strong>Profile: </strong> {TokenService.getUserName("user")}</p>
-                        <p><strong>Token: </strong> {TokenService.getLocalAccessToken("user")}</p>
-                        <p><strong>Id: </strong> {TokenService.getId("user")}</p>
-                        <p><strong>Email: </strong> {TokenService.getEmail("user")}</p>
-                        <strong>Authorities: </strong> {TokenService.getUser().roles.map((role, index) => <li key={index}>{role}</li>)}
+                        <p><strong>Profile: </strong> {getUserName("user")}</p>
+                        <p><strong>Token: </strong> {getLocalAccessToken("user")}</p>
+                        <p><strong>Id: </strong> {getId("user")}</p>
+                        <p><strong>Email: </strong> {getEmail("user")}</p>
+                        <strong>Authorities: </strong> {getUser().roles.map((role, index) => <li key={index}>{role}</li>)}
                     </div>
                     :
-                    <Expirated />
+                    <Message />
                 }
             </Card.Body>
         </Card>
-    );
+    )
 }

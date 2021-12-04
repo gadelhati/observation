@@ -22,9 +22,9 @@
 
 
 
-import React from "react";
-// import GoogleMapReact, { Map, GoogleApiWrapper, Marker } from 'google-map-react';
-import GoogleMapReact from 'google-map-react';
+import React from "react"
+// import GoogleMapReact, { Map, GoogleApiWrapper, Marker } from "google-map-react"
+import GoogleMapReact from "google-map-react"
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 

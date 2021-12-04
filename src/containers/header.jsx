@@ -1,8 +1,8 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import TokenService from "../services/service.token"
+import React from "react"
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap"
+import { getUser, getUserName, removeToken } from "../services/service.token"
 
-const Header = () => {
+export const Header = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -11,7 +11,7 @@ const Header = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                        {TokenService.getUser("user") && (
+                        {getUser("user") && (
                             <>
                                 <Nav.Link href="/item">Item</Nav.Link>
                                 <Nav.Link href="/land">Land</Nav.Link>
@@ -20,13 +20,13 @@ const Header = () => {
                         )}
                     </Nav>
                     <Nav>
-                        {TokenService.getUser("user") ? (
+                        {getUser("user") ? (
                             <>
-                                <NavDropdown title={TokenService.getUserName("user")} id="nav-dropdown">
+                                <NavDropdown title={getUserName("user")} id="nav-dropdown">
                                     <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                                     <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="/signin" onClick={() => TokenService.removeToken()}>LogOut</NavDropdown.Item>
+                                    <NavDropdown.Item href="/signin" onClick={() => removeToken()}>LogOut</NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         ) : (
@@ -40,5 +40,3 @@ const Header = () => {
         </Navbar>
     )
 }
-
-export default Header;
