@@ -7,7 +7,7 @@ import { ShipSynopMaps } from './components/shipsynop/shipsynop.maps'
 import { ShipSynopUpload } from './components/shipsynop/shipsynop.upload'
 
 import { AuthItem } from "./components/auth/auth.item";
-import { Profile } from "./components/auth/profile.item";
+import { Profile } from "./containers/profile";
 import { TokenRoutes } from './routes.token'
 
 const Routes = () => (

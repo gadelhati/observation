@@ -1,4 +1,4 @@
-import { constants } from "../types/constants.auth"
+import { constants } from "../constants/constants"
 
 const user = JSON.parse(localStorage.getItem("user"))
 

@@ -1,6 +1,6 @@
-import React, { useState/*, useEffect*/ } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// import { useHistory } from "react-router"
+import { useHistory } from "react-router"
 
 import { signupActions, signinActions } from "../../actions/action.auth"
 import { Card, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
@@ -11,7 +11,7 @@ export const AuthItem = (props) => {
 
     const [state, setState] = useState(props)
     const [message, setMessage] = useState({ expose: false, heading: "", body: "" })
-    // const history = useHistory()
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const loading = useSelector((state => state.itens.loading))
@@ -26,31 +26,31 @@ export const AuthItem = (props) => {
     //     .catch(error => {
     //     })
     // }, [dispatch, props.match.params.id])
-    // useEffect(() => {
-    //     if(serviceToken.getUser("user")){
-    //         return <Redirect to="/profile" />
-    //     }
-    // });
+    useEffect(() => {
+        // if(serviceToken.getUser("user")){
+            // return <Redirect to="/profile" />
+        // }
+        // history.push('/signin')
+    }, [dispatch, state]);
 
     const signupItem = () => {
         submitItem(state)
         dispatch(signupActions(state.username, state.email, state.password))
             .then(response => {
-                setMessage({ expose: true, heading: "Signuped", body: JSON.stringify(response) })
+                setMessage({ expose: true, heading: "Signuped", body: JSON.stringify(response.data.id) })
             })
             .catch(error => {
                 setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
-        // history.push('/')
     };
     const signinItem = () => {
         submitItem(state)
         dispatch(signinActions(state.username, state.password))
             .then(response => {
-                setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response) })
+                setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response.id) })
             })
             .catch(error => {
-                // setAlert({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
+                setMessage({ expose: true, heading: "Error", body: "Not signuped" })
             })
         // history.push('/')
     }
@@ -74,10 +74,6 @@ export const AuthItem = (props) => {
             email: state.email
         }
     }
-    // const validateForm = () => dispatch( validateFormActions() )
-    // const validationSuccess = () => dispatch ( validateSuccess() )
-    // const validationError = () => dispatch ( validateError() )
-    // const error = useSelector((state) => state.error.error)
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { constants } from "../types/constants"
+import { constants } from "../constants/constants"
 
 const iniatialState = {
     itens: [],

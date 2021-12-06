@@ -1,4 +1,4 @@
-import { constants } from "../types/constants"
+import { constants } from "../constants/constants"
 import { create, retrieve, getRetrieve, update, remove, removeAll } from "../services/service.shipsynop"
 
 export const createActions = (item) => async (dispatch) => {
