@@ -17,7 +17,7 @@ export const ShipSynopList = (props) => {
 	useEffect(() => {
 		dispatch(retrieveAllActions())
 		.then(response => {
-			setMessage({ expose: true, heading: "Load", body: "Complete" })
+			// setMessage({ expose: true, heading: "Load", body: "Complete" })
 		})
 		.catch(error => {
 			setMessage({ expose: true, heading: "Oops?!", body: "Your section has expired please login again" })
@@ -54,8 +54,9 @@ export const ShipSynopList = (props) => {
 							<th>TTT</th>
 							<th>PPPP</th>
 							<th>ww</th>
-							<th>W1</th>
-							<th>W2</th>
+							{/* <th>W1</th>
+							<th>W2</th> */}
+							<th>w1w2</th>
 							<th></th>
 						</tr>
 					</thead>

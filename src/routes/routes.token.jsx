@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { getLocalRefreshToken } from './services/service.token'
+import { getLocalRefreshToken } from "../services/service.token"
 
 export const TokenRoutes = ({component: Component, ...rest}) => (
     <Route {...rest} render={props=>

@@ -59,6 +59,7 @@ export const ShipSynopItem = (props) => {
     }
     const submitItem = () => {
         return {
+            ...state,
             _89: state._89,
             a: state.a,
             a1: state.a1,
@@ -99,13 +100,14 @@ export const ShipSynopItem = (props) => {
             ii: state.ii,
             iii: state.iii,
             ir: state.ir,
-            is_ice: state.is_ice,
+            is: state.is,
             iw: state.iw,
             ix: state.ix,
             lalala: state.lalala,
             lolololo: state.lolololo,
             mimi: state.mimi,
-            MjMj: state.mjmj,
+            aabbxx: state.aabbxx,
+            // mjmj: state.mjmj,
             n: state.n,
             nbnbnb: state.nbnbnb,
             nh: state.nh,
@@ -139,8 +141,9 @@ export const ShipSynopItem = (props) => {
             txtxtx: state.txtxtx,
             vs: state.vs,
             vv: state.vv,
-            W1: state.w1,
-            W2: state.w2,
+            w1w2: state.w1w2,
+            // w1: state.w1,
+            // w2: state.w2,
             wa1: state.wa1,
             wa2: state.wa2,
             wawa: state.wawa,
@@ -161,10 +164,10 @@ export const ShipSynopItem = (props) => {
                 <Row>
                     <Col lg={true} >
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">AA/BB</InputGroup.Text>
-                            <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Indicador mensagem SYNOP ou SHIP: AA ou BB</Tooltip>}>
+                            <InputGroup.Text id="basic-addon1">AAXX/BBXX</InputGroup.Text>
+                            <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Indicador mensagem SYNOP ou SHIP: AAXX ou BBXX</Tooltip>}>
                                 <FormControl
-                                    placeholder="AA/BB"
+                                    placeholder="AAXX/BBXX"
                                     aria-label="mimi"
                                     aria-describedby="basic-addon1"
                                     type="text"
@@ -742,7 +745,21 @@ export const ShipSynopItem = (props) => {
                                     name="ww"
                                 />
                             </OverlayTrigger>
-                            <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Tempo passado: 0 a 9 ou /</Tooltip>}>
+                            <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Tempo passado 1 e 2: 0 a 9 ou / (dobrado)</Tooltip>}>
+                                <FormControl
+                                    placeholder="w1w2"
+                                    aria-label="w1w2"
+                                    aria-describedby="basic-addon1"
+                                    type="text"
+                                    className="form-control"
+                                    id="w1w2"
+                                    required
+                                    value={state.w1w2}
+                                    onChange={handleInputChange}
+                                    name="w1w2"
+                                />
+                            </OverlayTrigger>
+                            {/* <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Tempo passado: 0 a 9 ou /</Tooltip>}>
                                 <FormControl
                                     placeholder="W1"
                                     aria-label="w1"
@@ -769,7 +786,7 @@ export const ShipSynopItem = (props) => {
                                     onChange={handleInputChange}
                                     name="w2"
                                 />
-                            </OverlayTrigger>
+                            </OverlayTrigger> */}
                         </InputGroup>
                     </Col>
                 </Row>
@@ -1142,15 +1159,15 @@ export const ShipSynopItem = (props) => {
                             <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Formação de gelo sobre navios: 1 a 5</Tooltip>}>
                                 <FormControl
                                     placeholder="Is"
-                                    aria-label="is_ice"
+                                    aria-label="is"
                                     aria-describedby="basic-addon1"
                                     type="text"
                                     className="form-control"
-                                    id="is_ice"
+                                    id="is"
                                     //required
-                                    value={state.is_ice}
+                                    value={state.is}
                                     onChange={handleInputChange}
-                                    name="is_ice"
+                                    name="is"
                                 />
                             </OverlayTrigger>
                             <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">Espessura da camada de gelo em centimetros: 00 a 30</Tooltip>}>

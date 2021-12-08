@@ -1,16 +1,16 @@
-import React from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import React from "react"
+import { Route, BrowserRouter, Switch } from "react-router-dom"
 
-import { ShipSynopList } from './components/shipsynop/shipsynop.list'
-import { ShipSynopItem } from './components/shipsynop/shipsynop.item'
-import { ShipSynopMaps } from './components/shipsynop/shipsynop.maps'
-import { ShipSynopUpload } from './components/shipsynop/shipsynop.upload'
+import { ShipSynopList } from "../components/shipsynop/shipsynop.list"
+import { ShipSynopItem } from "../components/shipsynop/shipsynop.item"
+import { ShipSynopMaps } from "../components/map/shipsynop.maps"
+import { ShipSynopUpload } from "../components/upload/shipsynop.upload"
 
-import { AuthItem } from "./components/auth/auth.item";
-import { Profile } from "./containers/profile";
-import { TokenRoutes } from './routes.token'
+import { AuthItem } from "../components/auth/auth.item"
+import { Profile } from "../containers/profile"
+import { TokenRoutes } from "./routes.token"
 
-const Routes = () => (
+export const Routes = () => (
     <BrowserRouter>
        <Switch>
            <Route exact path={["/", "/dashboard"]} component={ShipSynopList} />
@@ -24,5 +24,3 @@ const Routes = () => (
         </Switch>
     </BrowserRouter>
 )
-
-export default Routes;

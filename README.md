@@ -1,4 +1,4 @@
-# Application Front
+# Application _Front_
 
 
 ![github](https://img.shields.io/github/stars/gadelhati/application-front?style=social "Github")

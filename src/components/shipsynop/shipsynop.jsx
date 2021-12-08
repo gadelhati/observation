@@ -27,8 +27,9 @@ export const ShipSynop = ( props ) => {
             <td>{state.item.ttt}</td>
             <td>{state.item.pppp}</td>
             <td>{state.item.ww}</td>
-            <td>{state.item.w1}</td>
-            <td>{state.item.w2}</td>
+            {/* <td>{state.item.w1}</td>
+            <td>{state.item.w2}</td> */}
+            <td>{state.item.w1w2}</td>
             <td>
                 <Button href={`/item/${state.item.id}`} variant="secondary" key={state.item.id} item={state.item} > More </Button>
                 {/* <Link to={{ pathname: `/add/${state.item.id}`, item: state.item }}>Register</Link> */}
