@@ -37,20 +37,21 @@ export const AuthItem = (props) => {
         submitItem(state)
         dispatch(signupActions(state.username, state.email, state.password))
             .then(response => {
-                setMessage({ expose: true, heading: "Signuped", body: JSON.stringify(response.data.id) })
+                setMessage({ expose: true, heading: "Signuped", body: JSON.stringify(response) })
             })
             .catch(error => {
                 setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
+        // history.push('/')
     };
     const signinItem = () => {
         submitItem(state)
         dispatch(signinActions(state.username, state.password))
             .then(response => {
-                setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response.id) })
+                setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response) })
             })
             .catch(error => {
-                setMessage({ expose: true, heading: "Error", body: "Not signuped" })
+                setMessage({ expose: true, heading: "Error", body: JSON.stringify(error.response.data.errors) })
             })
         // history.push('/')
     }
@@ -74,6 +75,10 @@ export const AuthItem = (props) => {
             email: state.email
         }
     }
+    // const validateForm = () => dispatch( validateFormActions() )
+    // const validationSuccess = () => dispatch ( validateSuccess() )
+    // const validationError = () => dispatch ( validateError() )
+    // const error = useSelector((state) => state.error.error)
 
     return (
         <>
