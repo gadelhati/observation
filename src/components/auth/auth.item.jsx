@@ -52,7 +52,7 @@ export const AuthItem = (props) => {
                 window.location.reload()
             })
             .catch(error => {
-                setMessage({ expose: true, heading: "Error", body: JSON.stringify(error.response.data.errors) })
+                setMessage({ expose: true, heading: "Error", body: JSON.stringify("error") })
             })
     }
     // const logOutItem = () => {
