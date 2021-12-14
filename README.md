@@ -46,5 +46,13 @@ npm run build
 ```
 git config --global user.name "Gadelha_TI"
 git config --global user.email "gadelha.ti@gmail.com"
-git config --global user.signingkey 35F5FFB2
+
+git remote add origin <>
+git add archive.txt
+git add .
+git commit –m "comment commit"
+git pull
+git tag 1.1.0 <insert-commitID-here>
+
+git diff
 ```
