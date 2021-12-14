@@ -26,12 +26,13 @@ export const ShipSynopItem = (props) => {
     const createItem = () => {
         submitItem(state)
         dispatch(createActions(state))
-            .then(response => {
-                setMessage({ expose: true, heading: "Created item", body: JSON.stringify(response.data.id) })
-            })
-            .catch(error => {
+        .catch(error => {
+            try {
                 setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
-            })
+            } catch {
+                setMessage({ expose: true, heading: "Error", body: error.response.data.errors })
+            }
+        })
     }
     const updateItem = () => {
         submitItem(state)
