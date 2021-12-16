@@ -1,7 +1,28 @@
 {
   "name": "application-front",
   "version": "0.1.0",
-  "private": true,
+  "description": "FM 12 - XI SYNOP and FM 13 - XI SHIP",
+  "main": "index.jsx",
+  "author": {
+    "name": "GadelhaTI",
+    "url": "http://www.gadelhat.eti.br",
+    "github": "https://github.com/gadelhati",
+    "twitter": "https://twitter.com/gadelhati"
+  },
+  "contributors": [
+    {
+      "name": "Instituto Hidrográfico",
+      "url": "https://github.com/Instituto-Hidrografico"
+    }
+  ],
+  "homepage": "http://10.5.192.35/observation/",
+  "copyright": "Copyright 1822-2021",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gadelhati/application-front.git"
+  },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@mui/core": "^5.0.0-alpha.54",
@@ -32,7 +53,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

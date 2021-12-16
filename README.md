@@ -44,7 +44,7 @@ npm run build
 > [MIT License](https://choosealicense.com/licenses/mit/)
 
 ```
-git config --global user.name "Gadelha_TI"
+git config --global user.name "GadelhaTI"
 git config --global user.email "gadelha.ti@gmail.com"
 
 git remote add origin <>
@@ -53,7 +53,7 @@ git add .
 git commit –m "comment commit"
 git pull
 git tag 1.1.0 <insert-commitID-here>
-
+git push -u origin master
 git diff
 ```
 
@@ -62,4 +62,14 @@ git diff
 npm run build
 cp /home/<user>/build.zip /usr/share/nginx/html
 unzip /usr/share/nginx/html/build.zip
+```
+
+### Edit /etc/nginx/conf.d/default.conf
+
+Add the new code
+```
+location /<folder> {
+    root    /usr/share/nginx/html;
+    index   index.html  index.htm;
+}
 ```
