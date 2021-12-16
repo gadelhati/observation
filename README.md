@@ -56,3 +56,10 @@ git tag 1.1.0 <insert-commitID-here>
 
 git diff
 ```
+
+## Deploy
+```
+npm run build
+cp /home/<user>/build.zip /usr/share/nginx/html
+unzip /usr/share/nginx/html/build.zip
+```
