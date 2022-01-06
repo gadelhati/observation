@@ -8,7 +8,7 @@ export const TokenRoutes = ({component: Component, ...rest}) => (
         getLocalRefreshToken() ? (
             <Component {...props} />
         ) : (
-            <Redirect to={{ pathname: '/signin', state: { from: props.location} }} />
+            <Redirect to={{ pathname: '/#/signin', state: { from: props.location} }} />
         )
     } />
 )

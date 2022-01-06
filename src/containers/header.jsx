@@ -10,12 +10,12 @@ export const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                        <Nav.Link href="/#/dashboard">Dashboard</Nav.Link>
                         {getUser("user") && (
                             <>
-                                <Nav.Link href="/item">Item</Nav.Link>
-                                <Nav.Link href="/land">Land</Nav.Link>
-                                <Nav.Link href="/upload">Upload</Nav.Link>
+                                <Nav.Link href="/#/item">Item</Nav.Link>
+                                <Nav.Link href="/#/land">Land</Nav.Link>
+                                <Nav.Link href="/#/upload">Upload</Nav.Link>
                             </>
                         )}
                     </Nav>
@@ -23,15 +23,15 @@ export const Header = () => {
                         {getUser("user") ? (
                             <>
                                 <NavDropdown title={getUserName("user")} id="nav-dropdown">
-                                    <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                                    <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+                                    <NavDropdown.Item href="/#/profile">Profile</NavDropdown.Item>
+                                    <NavDropdown.Item href="/#/signup">Sign Up</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="/signin" onClick={() => removeToken()}>LogOut</NavDropdown.Item>
+                                    <NavDropdown.Item href="/#/signin" onClick={() => removeToken()}>LogOut</NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         ) : (
                             <>
-                                <Nav.Link href="/signin">Signin</Nav.Link>
+                                <Nav.Link href="/#/signin">Signin</Nav.Link>
                             </>
                         )}
                     </Nav>
