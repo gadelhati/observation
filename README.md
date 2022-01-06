@@ -14,7 +14,7 @@ npm create-react-app application-front
 ## `Necessary Tech stack`
 
 ```
-npm i axios react-redux react-router-dom redux-thunk react-bootstrap react-dropzone react-validation validator
+npm i axios react-redux react-router-dom redux-thunk react-bootstrap react-dropzone react-validation validator @coreui/react @coreui/icons @coreui/icons-react 
 ```
 ## `How to run`
 
