@@ -13,7 +13,7 @@ import { TokenRoutes } from "./routes.token"
 export const Routes = () => (
     <HashRouter>
        <Switch>
-           <Route exact path={["/", "/dashboard"]} component={ShipSynopList} />
+           <Route exact path={["/observation", "/dashboard"]} component={ShipSynopList} />
            <Route exact path="/signin" component={AuthItem} />
 
            <TokenRoutes exact path="/land" component={ShipSynopMaps} />

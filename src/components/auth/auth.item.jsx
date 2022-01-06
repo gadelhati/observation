@@ -48,7 +48,7 @@ export const AuthItem = (props) => {
         dispatch(signinActions(state.username, state.password))
             .then(response => {
                 setMessage({ expose: true, heading: "Signined", body: JSON.stringify(response) })
-                history.push("/")
+                history.push("/observation")
                 window.location.reload()
             })
             .catch(error => {
