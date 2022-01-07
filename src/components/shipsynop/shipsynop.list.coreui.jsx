@@ -1,72 +1,126 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Card, Table } from "react-bootstrap"
+import React from "react"
+import { useState } from "react"
+import { CBadge, CButton, CCardBody, CCollapse } from "@coreui/react"
+import { CDataTable } from "@coreui/react"
 
-import { Message } from "../../helpers/message.alert"
-import { retrieveAllActions } from "../../actions/action.shipsynop"
-import { ShipSynop } from "./shipsynop"
-
-export const ShipSynopList = (props) => {
-
-	const [message, setMessage] = useState({ expose: false, heading: "", body: "" })
-	const dispatch = useDispatch()
-
-	const loading = useSelector((state => state.itens.loading))
-	const itens = useSelector((state => state.itens.itens))
-
-	useEffect(() => {
-		dispatch(retrieveAllActions())
-		.then(response => {
-			// setMessage({ expose: true, heading: "Load", body: "Complete" })
-		})
-		.catch(error => {
-			setMessage({ expose: true, heading: "Oops?!", body: "Your section has expired please login again" })
-		})
-	}, [dispatch])
-
-	return (
-		<>
-		{   loading ?
-			<Message expose={message.expose} heading="Loading" body="loading..." />
-			:
-			<Message expose={message.expose} heading={message.heading} body={message.body} />
-		}
-			<Card>
-				<Table striped hover size="sm" responsive /*variant="dark"*/>
-					<thead>
-						<tr>
-							<th>AA/BB</th>
-							<th>DDDDDDD</th>
-							<th>II</th>
-							<th>iii</th>
-							<th>YY</th>
-							<th>GG</th>
-							<th>iw</th>
-							<th>iR</th>
-							<th>iX</th>
-							<th>h</th>
-							<th>VV</th>
-							<th>N</th>
-							<th>dd</th>
-							<th>ff</th>
-							<th>fff</th>
-							<th>sn</th>
-							<th>TTT</th>
-							<th>PPPP</th>
-							<th>ww</th>
-							{/* <th>W1</th>
-							<th>W2</th> */}
-							<th>w1w2</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{itens.map(item => (
-							<ShipSynop key={item.id} item={item} />
-						))}
-					</tbody>
-				</Table>
-			</Card>
-		</>
-	)
+export const Lista = () => {
+    const usersData = [
+        {id: 0, name: 'John Doe', registered: '2018/01/01', role: 'Guest', status: 'Pending'},
+        {id: 1, name: 'Samppa Nori', registered: '2018/01/01', role: 'Member', status: 'Active'},
+        {id: 2, name: 'Estavan Lykos', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
+        {id: 3, name: 'Chetan Mohamed', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
+        {id: 4, name: 'Derick Maximinus', registered: '2018/03/01', role: 'Member', status: 'Pending'},
+        {id: 5, name: 'Friderik Dávid', registered: '2018/01/21', role: 'Staff', status: 'Active'},
+        {id: 6, name: 'Yiorgos Avraamu', registered: '2018/01/01', role: 'Member', status: 'Active'},
+        {id: 7, name: 'Avram Tarasios', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
+        {id: 8, name: 'Quintin Ed', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
+        {id: 9, name: 'Enéas Kwadwo', registered: '2018/03/01', role: 'Member', status: 'Pending'},
+        {id: 10, name: 'Agapetus Tadeáš', registered: '2018/01/21', role: 'Staff', status: 'Active'},
+        {id: 11, name: 'Carwyn Fachtna', registered: '2018/01/01', role: 'Member', status: 'Active'},
+        {id: 12, name: 'Nehemiah Tatius', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
+        {id: 13, name: 'Ebbe Gemariah', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
+        {id: 14, name: 'Eustorgios Amulius', registered: '2018/03/01', role: 'Member', status: 'Pending'},
+        {id: 15, name: 'Leopold Gáspár', registered: '2018/01/21', role: 'Staff', status: 'Active'},
+        {id: 16, name: 'Pompeius René', registered: '2018/01/01', role: 'Member', status: 'Active'},
+        {id: 17, name: 'Paĉjo Jadon', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
+        {id: 18, name: 'Micheal Mercurius', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
+        {id: 19, name: 'Ganesha Dubhghall', registered: '2018/03/01', role: 'Member', status: 'Pending'},
+        {id: 20, name: 'Hiroto Šimun', registered: '2018/01/21', role: 'Staff', status: 'Active'},
+        {id: 21, name: 'Vishnu Serghei', registered: '2018/01/01', role: 'Member', status: 'Active'},
+        {id: 22, name: 'Zbyněk Phoibos', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
+        {id: 23, name: 'Aulus Agmundr', registered: '2018/01/01', role: 'Member', status: 'Pending'},
+        {id: 42, name: 'Ford Prefect', registered: '2001/05/25', role: 'Alien', status: 'Don\'t panic!'}
+      ]
+    
+      const [details, setDetails] = useState([])
+      // const [items, setItems] = useState(usersData)
+    
+      const toggleDetails = (index) => {
+        const position = details.indexOf(index)
+        let newDetails = details.slice()
+        if (position !== -1) {
+          newDetails.splice(position, 1)
+        } else {
+          newDetails = [...details, index]
+        }
+        setDetails(newDetails)
+      }
+    
+    
+      const fields = [
+        { key: 'name', _style: { width: '40%'} },
+        'registered',
+        { key: 'role', _style: { width: '20%'} },
+        { key: 'status', _style: { width: '20%'} },
+        { key: 'show_details',
+          label: '',
+          _style: { width: '1%' },
+          sorter: false,
+          filter: false
+        }
+      ]
+    
+      const getBadge = (status)=>{
+        switch (status) {
+          case 'Active': return 'success'
+          case 'Inactive': return 'secondary'
+          case 'Pending': return 'warning'
+          case 'Banned': return 'danger'
+          default: return 'primary'
+        }
+      }
+    
+      return (
+        <CDataTable
+          items={usersData}
+          fields={fields}
+          columnFilter
+          tableFilter
+          footer
+          itemsPerPageSelect
+          itemsPerPage={5}
+          hover
+          sorter
+          pagination
+          scopedSlots = {{
+            'status':
+              (item)=>(
+                <td>
+                  <CBadge color={getBadge(item.status)}>
+                    {item.status}
+                  </CBadge>
+                </td>
+              ),
+            'show_details':
+              (item, index)=>{
+                return (
+                  <td className="py-2">
+                    <CButton
+                      color="primary"
+                      variant="outline"
+                      shape="square"
+                      size="sm"
+                      onClick={()=>{toggleDetails(index)}}
+                    >
+                      {details.includes(index) ? 'Hide' : 'Show'}
+                    </CButton>
+                  </td>
+                  )
+              },
+            'details':
+                (item, index)=>{
+                  return (
+                  <CCollapse show={details.includes(index)}>
+                    <CCardBody>
+                      <h4>{item.username}</h4>
+                      <p className="text-muted">User since: {item.registered}</p>
+                      <CButton size="sm" color="info">User Settings</CButton>
+                      <CButton size="sm" color="danger" className="ml-1">Delete</CButton>
+                    </CCardBody>
+                  </CCollapse>
+                )
+              }
+          }}
+        />
+      )
 }

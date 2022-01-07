@@ -1,46 +1,48 @@
-import React from "react"
-import { useState } from "react"
-import { CContainer, CNavLink, CNavbarNav, CNavItem, CNav, CDropdown, CDropdownItem, CNavbarBrand, CNavbarToggler, CCollapse, CDropdownDivider } from "@coreui/react"
+import React, { useState } from "react"
+import { CNavbar, CNavbarBrand, CCollapse, CNavbarNav, CNavLink, CDropdownMenu, CDropdownItem, CToggler, CDropdown, CDropdownToggle } from "@coreui/react"
 import { getUser, getUserName, removeToken } from "../services/service.token"
-import { CNavbar } from "@coreui/react"
 
 export const Header = () => {
-    const [visible, setVisible] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <CNavbar expand="lg" colorScheme="light" className="bg-light" placement="sticky-top" >
-            <CContainer fluid>
-                <CNavbarBrand href="/observation/#/observation">Ship Synop</CNavbarBrand>
-                {/* <CNavbarToggle aria-controls="responsive-navbar-nav" /> */}
-                <CNavbarToggler onClick={() => setVisible(!visible)} />
-                <CCollapse className="navbar-collapse" visible={visible}>
+        <div>
+            <CNavbar expandable="sm" color="dark" >
+                <CToggler inNavbar onClick={() => setIsOpen(!isOpen)} />
+                <CNavbarBrand href="/observation/#/dashboard">ShipSynop</CNavbarBrand>
+                <CCollapse show={isOpen} navbar>
                     <CNavbarNav>
-                        <CNavItem><CNavLink href="/observation/#/dashboard">Dashboard</CNavLink></CNavItem>
+                        <CNavLink href="/observation/#/dashboard">Dashboard</CNavLink>
                         {getUser("user") && (
                             <>
-                                <CNavItem><CNavLink href="/observation/#/item">Item</CNavLink></CNavItem>
-                                <CNavItem><CNavLink href="/observation/#/land">Land</CNavLink></CNavItem>
-                                <CNavItem><CNavLink href="/observation/#/upload">Upload</CNavLink></CNavItem>
+                                <CNavLink href="/observation/#/item">Item</CNavLink>
+                                <CNavLink href="/observation/#/land">Land</CNavLink>
+                                <CNavLink href="/observation/#/upload">Upload</CNavLink>
                             </>
                         )}
                     </CNavbarNav>
-                    <CNav>
+                    <CNavbarNav className="ml-auto">
+                        {/* <CForm inline>
+                            <CInput className="mr-sm-2" placeholder="Search" size="sm"/>
+                            <CButton color="light" className="my-2 my-sm-0" type="submit">Search</CButton>
+                        </CForm> */}
                         {getUser("user") ? (
                             <>
-                                <CDropdown title={getUserName("user")} id="nav-dropdown">
-                                    <CDropdownItem href="/observation/#/profile">Profile</CDropdownItem>
-                                    <CDropdownItem href="/observation/#/signup">Sign Up</CDropdownItem>
-                                    <CDropdownDivider />
-                                    <CDropdownItem href="/observation/#/signin" onClick={() => removeToken()}>LogOut</CDropdownItem>
+                                <CDropdown inNav>
+                                    <CDropdownToggle color="primary">{getUserName("user")}</CDropdownToggle>
+                                    <CDropdownMenu>
+                                        <CDropdownItem href="/observation/#/profile">Profile</CDropdownItem>
+                                        <CDropdownItem href="/observation/#/signup">Sign Up</CDropdownItem>
+                                        <CDropdownItem href="/observation/#/signin" onClick={() => removeToken()}>LogOut</CDropdownItem>
+                                    </CDropdownMenu>
                                 </CDropdown>
                             </>
                         ) : (
-                            <>
-                                <CNavLink href="/observation/#/signin">Signin</CNavLink>
-                            </>
+                            <CNavLink href="/observation/#/signin">Signin</CNavLink>
                         )}
-                    </CNav>
+                    </CNavbarNav>
                 </CCollapse>
-            </CContainer>
-        </CNavbar>
+            </CNavbar>
+        </div>
     )
 }
