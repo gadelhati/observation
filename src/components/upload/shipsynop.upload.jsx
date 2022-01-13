@@ -49,7 +49,8 @@ export const ShipSynopUpload = () => {
     };
 
     return (
-        <Card style={{ width: '28rem' }}>
+        <Card style={{ width: '100%' }}>
+            <Card.Title>Upload Notes</Card.Title>
             {currentFile && (
                 <div className="progress mb-3">
                     <div

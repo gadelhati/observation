@@ -21,7 +21,7 @@ export const navigation = [
         to: '/login',
         icon: 'cil-people',
         public: 'public',
-        requiredPermission: [],
+        requiredPermission: [...constants.ROLE_USER],
     },
     {
         _tag: 'CSidebarNavItem',

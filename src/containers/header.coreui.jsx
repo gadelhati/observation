@@ -1,26 +1,46 @@
-import React, { useState } from "react"
-import { CNavbar, CNavbarBrand, CCollapse, CNavbarNav, CNavLink, CDropdownMenu, CDropdownItem, CToggler, CDropdown, CDropdownToggle } from "@coreui/react"
+import React from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { CHeader, CHeaderNav, CNavbarNav, CNavLink, CDropdownMenu, CDropdownItem, CToggler, CHeaderBrand, CDropdown, CDropdownToggle } from "@coreui/react"
+import CIcon from "@coreui/icons-react"
 import { getUser, getUserName, removeToken } from "../services/service.token"
 
 export const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch()
+    const sidebarShow = useSelector(state => state.sidebarShow)
+
+    const toggleSidebar = () => {
+        const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
+        dispatch({ type: 'set', sidebarShow: val })
+    }
+
+    const toggleSidebarMobile = () => {
+        const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
+        dispatch({ type: 'set', sidebarShow: val })
+    }
 
     return (
-        <div>
-            <CNavbar expandable="sm" color="dark" >
-                <CToggler inNavbar onClick={() => setIsOpen(!isOpen)} />
-                <CNavbarBrand href="/observation/#/dashboard">ShipSynop</CNavbarBrand>
-                <CCollapse show={isOpen} navbar>
-                    <CNavbarNav>
-                        <CNavLink href="/observation/#/dashboard">Dashboard</CNavLink>
+        <CHeader>
+            <CToggler inHeader className="ml-md-3 d-lg-none" onClick={toggleSidebarMobile} />
+            <CToggler inHeader className="ml-3 d-md-down-none" onClick={toggleSidebar} />
+            {/* <CHeaderBrand className="mx-auto d-lg-none" to="/">
+                <CIcon name="logo" height="48" alt="Logo"/>
+            </CHeaderBrand> */}
+            <CHeaderNav className="d-md-down-none mr-auto" >
+            {/* <CNavbar expandable="sm" > */}
+                {/* <CToggler inNavbar onClick={() => setIsOpen(!isOpen)} /> */}
+                {/* <CNavbarBrand href="/observation/#/dashboard">ShipSynop</CNavbarBrand> */}
+                {/* <CCollapse show={isOpen} navbar> */}
+                    {/* <CNavbarNav>
+                        <CNavLink href="/observation/#/dashboard">Observations</CNavLink>
                         {getUser("user") && (
                             <>
                                 <CNavLink href="/observation/#/item">Item</CNavLink>
-                                <CNavLink href="/observation/#/land">Land</CNavLink>
                                 <CNavLink href="/observation/#/upload">Upload</CNavLink>
+                                <CNavLink href="/observation/#/land">Land</CNavLink>
                             </>
                         )}
-                    </CNavbarNav>
+                    </CNavbarNav> */}
                     <CNavbarNav className="ml-auto">
                         {/* <CForm inline>
                             <CInput className="mr-sm-2" placeholder="Search" size="sm"/>
@@ -41,8 +61,9 @@ export const Header = () => {
                             <CNavLink href="/observation/#/signin">Signin</CNavLink>
                         )}
                     </CNavbarNav>
-                </CCollapse>
-            </CNavbar>
-        </div>
+                {/* </CCollapse> */}
+            {/* </CNavbar> */}
+            </CHeaderNav>
+        </CHeader>
     )
 }

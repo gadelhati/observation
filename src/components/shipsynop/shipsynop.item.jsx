@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createActions, retrieveActions, updateAction, deleteAction } from "../../actions/action.shipsynop"
-import { Container, Row, Col, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
+import { Card, Container, Row, Col, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
 import { Message } from "../../helpers/message.alert"
 import { initialStateShipSynop } from "../initialState/initialStateShipSynop"
 

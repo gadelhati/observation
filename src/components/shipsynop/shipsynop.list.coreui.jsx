@@ -1,126 +1,153 @@
-import React from "react"
-import { useState } from "react"
-import { CBadge, CButton, CCardBody, CCollapse } from "@coreui/react"
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+// import { CBadge, CButton, CCardBody, CCollapse } from "@coreui/react"
+import { Card, Button } from "react-bootstrap"
 import { CDataTable } from "@coreui/react"
 
+import { Message } from "../../helpers/message.alert"
+import { retrieveAllActions } from "../../actions/action.shipsynop"
+// import { ShipSynop } from "./shipsynop"
+
 export const Lista = () => {
-    const usersData = [
-        {id: 0, name: 'John Doe', registered: '2018/01/01', role: 'Guest', status: 'Pending'},
-        {id: 1, name: 'Samppa Nori', registered: '2018/01/01', role: 'Member', status: 'Active'},
-        {id: 2, name: 'Estavan Lykos', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
-        {id: 3, name: 'Chetan Mohamed', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
-        {id: 4, name: 'Derick Maximinus', registered: '2018/03/01', role: 'Member', status: 'Pending'},
-        {id: 5, name: 'Friderik Dávid', registered: '2018/01/21', role: 'Staff', status: 'Active'},
-        {id: 6, name: 'Yiorgos Avraamu', registered: '2018/01/01', role: 'Member', status: 'Active'},
-        {id: 7, name: 'Avram Tarasios', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
-        {id: 8, name: 'Quintin Ed', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
-        {id: 9, name: 'Enéas Kwadwo', registered: '2018/03/01', role: 'Member', status: 'Pending'},
-        {id: 10, name: 'Agapetus Tadeáš', registered: '2018/01/21', role: 'Staff', status: 'Active'},
-        {id: 11, name: 'Carwyn Fachtna', registered: '2018/01/01', role: 'Member', status: 'Active'},
-        {id: 12, name: 'Nehemiah Tatius', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
-        {id: 13, name: 'Ebbe Gemariah', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
-        {id: 14, name: 'Eustorgios Amulius', registered: '2018/03/01', role: 'Member', status: 'Pending'},
-        {id: 15, name: 'Leopold Gáspár', registered: '2018/01/21', role: 'Staff', status: 'Active'},
-        {id: 16, name: 'Pompeius René', registered: '2018/01/01', role: 'Member', status: 'Active'},
-        {id: 17, name: 'Paĉjo Jadon', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
-        {id: 18, name: 'Micheal Mercurius', registered: '2018/02/01', role: 'Admin', status: 'Inactive'},
-        {id: 19, name: 'Ganesha Dubhghall', registered: '2018/03/01', role: 'Member', status: 'Pending'},
-        {id: 20, name: 'Hiroto Šimun', registered: '2018/01/21', role: 'Staff', status: 'Active'},
-        {id: 21, name: 'Vishnu Serghei', registered: '2018/01/01', role: 'Member', status: 'Active'},
-        {id: 22, name: 'Zbyněk Phoibos', registered: '2018/02/01', role: 'Staff', status: 'Banned'},
-        {id: 23, name: 'Aulus Agmundr', registered: '2018/01/01', role: 'Member', status: 'Pending'},
-        {id: 42, name: 'Ford Prefect', registered: '2001/05/25', role: 'Alien', status: 'Don\'t panic!'}
-      ]
-    
-      const [details, setDetails] = useState([])
-      // const [items, setItems] = useState(usersData)
-    
-      const toggleDetails = (index) => {
-        const position = details.indexOf(index)
-        let newDetails = details.slice()
-        if (position !== -1) {
-          newDetails.splice(position, 1)
-        } else {
-          newDetails = [...details, index]
-        }
-        setDetails(newDetails)
-      }
-    
-    
-      const fields = [
-        { key: 'name', _style: { width: '40%'} },
-        'registered',
-        { key: 'role', _style: { width: '20%'} },
-        { key: 'status', _style: { width: '20%'} },
-        { key: 'show_details',
-          label: '',
-          _style: { width: '1%' },
-          sorter: false,
-          filter: false
-        }
-      ]
-    
-      const getBadge = (status)=>{
-        switch (status) {
-          case 'Active': return 'success'
-          case 'Inactive': return 'secondary'
-          case 'Pending': return 'warning'
-          case 'Banned': return 'danger'
-          default: return 'primary'
-        }
-      }
-    
-      return (
+  const [message, setMessage] = useState({ expose: false, heading: "", body: "" })
+  // const [details, setDetails] = useState([])
+  const dispatch = useDispatch()
+
+  const loading = useSelector((state => state.itens.loading))
+  const itens = useSelector((state => state.itens.itens))
+
+  useEffect(() => {
+    dispatch(retrieveAllActions())
+      .then(response => {
+        // setMessage({ expose: true, heading: "Load", body: "Complete" })
+      })
+      .catch(error => {
+        setMessage({ expose: true, heading: "Oops?!", body: "Your section has expired please login again" })
+      })
+  }, [dispatch])
+
+  // const toggleDetails = (index) => {
+  //   const position = details.indexOf(index)
+  //   let newDetails = details.slice()
+  //   if (position !== -1) {
+  //     newDetails.splice(position, 1)
+  //   } else {
+  //     newDetails = [...details, index]
+  //   }
+  //   setDetails(newDetails)
+  // }
+
+  const fields = [
+    // { key: 'AA/BB' },
+    // { key: 'DDDDDDD' },
+    // { key: 'II' },
+    // { key: 'iii' },
+    { key: 'yy' },
+    { key: 'gg' },
+    { key: 'iw' },
+    { key: 'ir' },
+    { key: 'ix' },
+    { key: 'h' },
+    { key: 'vv' },
+    { key: 'n' },
+    { key: 'dd' },
+    { key: 'ff' },
+    { key: 'fff' },
+    // { key: 'sn' },
+    { key: 'ttt' },
+    { key: 'pppp' },
+    { key: 'ww' },
+    { key: 'w1w2' },
+    'botao'
+    // { key: 'name', _style: { width: '40%' } },
+    // 'registered',
+    // { key: 'status', _style: { width: '20%' } },
+    // {
+    //   key: 'show_details',
+    //   label: '',
+    //   _style: { width: '1%' },
+    //   sorter: false,
+    //   filter: false
+    // }
+  ]
+
+  // const getBadge = (status) => {
+  //   switch (status) {
+  //     case 'Active': return 'success'
+  //     case 'Inactive': return 'secondary'
+  //     case 'Pending': return 'warning'
+  //     case 'Banned': return 'danger'
+  //     default: return 'primary'
+  //   }
+  // }
+
+  return (
+    <>
+      {loading ?
+			<Message expose={message.expose} heading="Loading" body="loading..." />
+			:
+      <Card>
+        {/* <Card.Title>Observations</Card.Title> */}
         <CDataTable
-          items={usersData}
+          items={itens}
           fields={fields}
           columnFilter
-          tableFilter
-          footer
+          // tableFilter
+          // footer
           itemsPerPageSelect
           itemsPerPage={5}
           hover
           sorter
           pagination
-          scopedSlots = {{
-            'status':
-              (item)=>(
+          scopedSlots={{
+            'botao':
+              (item) => (
                 <td>
-                  <CBadge color={getBadge(item.status)}>
-                    {item.status}
-                  </CBadge>
+                  {/* <Button href={`/observation/#/item/${item.id}`} variant="secondary" key={item.id} item={item} > More </Button> */}
+                  <Button href={`/observation/#/item/${item.id}`} variant="secondary" key={item.id} item={item} >More</Button>
                 </td>
               ),
-            'show_details':
-              (item, index)=>{
-                return (
-                  <td className="py-2">
-                    <CButton
-                      color="primary"
-                      variant="outline"
-                      shape="square"
-                      size="sm"
-                      onClick={()=>{toggleDetails(index)}}
-                    >
-                      {details.includes(index) ? 'Hide' : 'Show'}
-                    </CButton>
-                  </td>
-                  )
-              },
-            'details':
-                (item, index)=>{
-                  return (
-                  <CCollapse show={details.includes(index)}>
-                    <CCardBody>
-                      <h4>{item.username}</h4>
-                      <p className="text-muted">User since: {item.registered}</p>
-                      <CButton size="sm" color="info">User Settings</CButton>
-                      <CButton size="sm" color="danger" className="ml-1">Delete</CButton>
-                    </CCardBody>
-                  </CCollapse>
-                )
-              }
+          //   'status':
+          //     (item) => (
+          //       <td>
+          //         <CBadge color={getBadge(item.status)}>
+          //           {item.status}
+          //         </CBadge>
+          //       </td>
+          //     ),
+          //   'show_details':
+          //     (item, index) => {
+          //       return (
+          //         <td className="py-2">
+          //           <CButton
+          //             color="primary"
+          //             variant="outline"
+          //             shape="square"
+          //             size="sm"
+          //             onClick={() => { toggleDetails(index) }}
+          //           >
+          //             {details.includes(index) ? 'Hide' : 'Show'}
+          //           </CButton>
+          //         </td>
+          //       )
+          //     },
+          //   'details':
+          //     (item, index) => {
+          //       return (
+          //         <CCollapse show={details.includes(index)}>
+          //           <CCardBody>
+          //             <h4>{item.username}</h4>
+          //             <p className="text-muted">User since: {item.registered}</p>
+          //             <CButton size="sm" color="info">User Settings</CButton>
+          //             <CButton size="sm" color="danger" className="ml-1">Delete</CButton>
+          //           </CCardBody>
+          //         </CCollapse>
+          //       )
+          //     }
           }}
         />
-      )
+      </Card>
+      }
+    </>
+  )
 }

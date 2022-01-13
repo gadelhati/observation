@@ -1,11 +1,5 @@
-export const getLocalRefreshToken = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user?.refreshToken;
-}
-
-export const getLocalAccessToken = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user?.accessToken;
+export const currentUserisLogged = () => {
+  return localStorage.getItem('user') ? true : false;
 }
 
 export const updateLocalAccessToken = (token) => {
@@ -18,18 +12,14 @@ export const getUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 }
 
-export const getTrue = () => {
-  return true;
-}
-
 export const setUser = (user) => {
   console.log(JSON.stringify(user));
   localStorage.setItem("user", JSON.stringify(user));
 }
 
-export const getUserName = () => {
+export const getLocalRefreshToken = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  return user?.username;
+  return user?.refreshToken;
 }
 
 export const getId = () => {
@@ -37,11 +27,27 @@ export const getId = () => {
   return user?.id;
 }
 
+export const getUserName = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.username;
+}
+
 export const getEmail = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   return user?.email;
 }
 
+export const getRoles = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.roles;
+}
+
+export const getLocalAccessToken = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.accessToken;
+}
+
 export const removeToken = () => {
   localStorage.clear()
+  window.location.reload()
 }
