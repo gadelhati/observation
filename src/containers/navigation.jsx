@@ -1,73 +1,47 @@
 import { constants } from "../types/constants.permissions"
+// import { cilPeople, cilListRich, cilTag, cilCloudUpload, cilLocationPin } from '@coreui/icons';
 
 export const navigation = [
     {
-        _tag: 'CSidebarNavTitle',
-        _children: ['Movimentações'],
-        requiredPermission: [...constants.ROLE_ADMIN, ...constants.ROLE_USER],
-    },
-    {
         _tag: 'CSidebarNavItem',
-        name: 'Movimentações',
-        to: '/',
-        icon: 'cil-swap-horizontal',
-        public: 'public',
-        requiredPermission: [...constants.ROLE_ADMIN, ...constants.ROLE_USER],
-    },
-
-    {
-        _tag: 'CSidebarNavItem',
-        name: 'Login',
-        to: '/login',
-        icon: 'cil-people',
-        public: 'public',
-        requiredPermission: [...constants.ROLE_USER],
-    },
-    {
-        _tag: 'CSidebarNavItem',
-        name: 'Solicitação',
-        icon: 'cil-cursor',
-        to: '/solicitacao',
-        requiredPermission: [...constants.ROLE_ADMIN],
-    },
-    {
-        _tag: 'CSidebarNavItem',
-        name: 'Aprovação',
-        icon: 'cil-bell',
-        to: '/aprovacao',
-        requiredPermission: [...constants.ROLE_ADMIN],
-    },
-    {
-        _tag: 'CSidebarNavItem',
-        name: 'Ratificação',
-        icon: 'cil-thumb-up',
-        to: '/ratificacao',
+        name: 'Observations',
+        icon: 'cilListRich',
+        to: '/observation/#/dashboard',
         requiredPermission: [...constants.ROLE_ADMIN],
     },
     {
         _tag: 'CSidebarNavTitle',
         _children: ['Cadastros'],
+        requiredPermission: [...constants.ROLE_USER],
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Item',
+        to: '/observation/#/item',
+        icon: 'cilTag',
+        requiredPermission: [...constants.ROLE_USER],
+    },
+    {
+        _tag: 'CSidebarNavItem',
+        name: 'Upload',
+        to: '/observation/#/upload',
+        icon: 'cilCloudUpload',
         requiredPermission: [...constants.ROLE_ADMIN],
     },
     {
         _tag: 'CSidebarNavItem',
-        name: 'Grupo',
-        to: '/grupo',
-        icon: 'cil-check-circle',
-        requiredPermission: [...constants.ROLE_ADMIN],
+        name: 'Land',
+        to: '/observation/#/land',
+        icon: 'cilLocationPin',
+        public: 'public',
+        requiredPermission: [...constants.ROLE_USER],
     },
     {
         _tag: 'CSidebarNavItem',
-        name: 'Equipamento',
-        to: '/equipamento',
-        icon: 'cil-compass',
-        requiredPermission: [...constants.ROLE_ADMIN],
-    },
-    {
-        _tag: 'CSidebarNavItem',
-        name: 'Fabricante',
-        to: '/fabricante',
-        icon: 'cil-settings',
-        requiredPermission: [...constants.ROLE_ADMIN],
+        name: 'Signin',
+        to: '/observation/#/signin',
+        icon: 'cilPeople',
+        public: 'public',
+        requiredPermission: [...constants.ROLE_USER],
     }
 ]
