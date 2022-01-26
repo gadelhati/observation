@@ -6,7 +6,7 @@ export const uploadFile = (file, onUploadProgress) => {
   formData.append("file", file)
   return api.post(`/observation/upload`, formData, {
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Origin": "*",
       "Content-Type": "multipart/form-data",
       "Authorization": 'Bearer '+ getLocalAccessToken(),
     },
