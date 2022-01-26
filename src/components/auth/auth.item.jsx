@@ -6,6 +6,7 @@ import { signupActions, signinActions } from "../../actions/action.auth"
 import { Card, OverlayTrigger, Tooltip, InputGroup, FormControl, Button } from "react-bootstrap"
 import { Message } from "../../helpers/message.alert"
 import ErrorBoundary from "../../helpers/error.boudary"
+import heraldica from "../../assets/icons/brasao-chm.png"
 
 export const AuthItem = (props) => {
 
@@ -88,7 +89,7 @@ export const AuthItem = (props) => {
 			<Message expose={message.expose} heading={message.heading} body={message.body} />
 		}
         <Card style={{ width: '28rem' }}>
-            <Card.Img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile-img" className="profile-img-card"/>
+            <Card.Img className="profile-img-card" alt="Centro de Hidrografia da Marinha" src={heraldica} height={40} />
              <Card.Body>
                 <InputGroup className="mb-3">
                     <InputGroup.Text id="basic-addon1">Username</InputGroup.Text>
