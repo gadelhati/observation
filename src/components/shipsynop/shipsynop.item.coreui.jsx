@@ -29,7 +29,7 @@ export const ShipSynopItem = (props) => {
         dispatch(createActions(state))
             .catch(error => {
                 try {
-                    setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
+                    setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => (item.field == undefined? "Grupo":item.field) + ": " + item.defaultMessage + ", ") })
                 } catch {
                     setMessage({ expose: true, heading: "Error", body: error.response.data.errors })
                 }
@@ -43,7 +43,7 @@ export const ShipSynopItem = (props) => {
             })
             .catch(error => {
                 // console.log(error)
-                setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
+                setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => (item.field == undefined? "Grupo":item.field) + ": " + item.defaultMessage + ", ") })
             })
     }
     const deleteItem = () => {
