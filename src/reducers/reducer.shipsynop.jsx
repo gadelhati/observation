@@ -26,7 +26,8 @@ export const ShipSynopReducer = (state = iniatialState, action) => {
         case constants.RETRIEVE_START:
             return { ...state, loading: true, item: {} }
         case constants.RETRIEVE_SUCCESS:
-            return { ...state, itens: action.payload, loading: false, error: false, item: {} }
+            // return { ...state, itens: action.payload, loading: false, error: false, item: {} }
+            return { ...state, itens: [], loading: false, error: false, item: action.payload }
         case constants.RETRIEVE_ERROR:
             return { ...state, itens: [], error: true, loading: false, item: {} }
 
