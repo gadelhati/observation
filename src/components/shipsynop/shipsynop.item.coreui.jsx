@@ -42,6 +42,7 @@ export const ShipSynopItem = (props) => {
                 setMessage({ expose: true, heading: "Updated item", body: JSON.stringify(response.data.id) })
             })
             .catch(error => {
+                // console.log(error)
                 setMessage({ expose: true, heading: "Error", body: error.response.data.errors.map(item => item.field + ": " + item.defaultMessage + ", ") })
             })
     }
@@ -160,6 +161,8 @@ export const ShipSynopItem = (props) => {
             {loading ?
                 <Message expose={message.expose} heading="Loading" body="loading..." />
                 :
+                <>
+                <Message expose={message.expose} heading={message.heading} body={message.body} />
                 <Card>
                     {/* <Card.Title>Observation</Card.Title> */}
                     <Row>
@@ -1533,6 +1536,7 @@ export const ShipSynopItem = (props) => {
                     }
                     {state.error ? <div className="font-weight-bold alert alert-danger text-center mt-4">Some data are //required {state.error}</div> : null}
                 </Card>
+                </>
             }
         </>
     )
