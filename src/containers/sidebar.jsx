@@ -62,7 +62,7 @@ export const Sidebar = () => {
                     <CNavLink href="/observation/#/signin" className="text-secondary"><CIcon class="w-25 p-3" icon={cilPeople} />Signin</CNavLink>
                 }
             </CSidebarNav>
-            <CSidebarMinimizer className="c-d-md-down-none" />
+            {/* <CSidebarMinimizer className="c-d-md-down-none" /> */}
         </CSidebar>
     )
 }
