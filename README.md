@@ -62,8 +62,12 @@ git diff
 ## Deploy
 ```
 npm run build
-cp /home/<user>/build.zip /usr/share/nginx/html
-unzip /usr/share/nginx/html/build.zip
+service nginx stop
+rm -rf /usr/share/nginx/html/<old-name>
+cp /home/<user>/<application-name>.zip /usr/share/nginx/html/
+unzip /usr/share/nginx/html/<application-name>.zip
+rm /usr/share/nginx/html/<application-name>.zip
+service nginx start
 ```
 
 ### Edit /etc/nginx/conf.d/default.conf
